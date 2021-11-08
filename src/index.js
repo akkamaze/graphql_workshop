@@ -8,7 +8,6 @@ const typeDefs = `
 	type Query {
 		hello(name: String, age: Int): String!
 		greeting: String!
-
 	}
 
 	type Mutation {
@@ -25,10 +24,7 @@ const resolvers = {
 		hello: (root, { name, age }, ctx, info) => {
 			if (!name) 
 				name = defaultName;
-			if (!age) 
-				age = ""
-			 else 
-				age = ` I'm ${age}.`
+			age = !age ? "" : ` I'm ${age}.`
 			return `Hello! You can call me ${name}!${age}`;
 		},
 		greeting: () => "GraphQL, good to see you."
